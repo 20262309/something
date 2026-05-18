@@ -1,29 +1,30 @@
 import random
 
 def createmat(n):
-    matrix=[]
-    
-    limit=n*n*10
-    for i in range(n):
-        row=[]
-        for j in range(n):
-            row.append(random.randint(1,limit-1))
+    matrix = []
+    limit = n * n * 10
+
+    for _ in range(n):
+        row = []
+        for _ in range(n):
+            row.append(random.randint(1, limit - 1))
         matrix.append(row)
-        
+
     return matrix
-    
-    
-def printmat(matrix,name):
-    #pretty
+
+
+def printmat(matrix, name):
     print(f"==={name}===")
-    for i in range(len(matrix)): #in len so N
-        row = matrix[i][:]
+
+    for row in matrix:
         for val in row:
-            print(f"{val:>4}",end=" ")
+            print(f"{val:>4}", end=" ")
         print()
+
     print()
-    
-n=int(input("input number (2~5): "))
+
+
+n = int(input("input number (2~5): "))
 
 if 1 < n <= 5:
     A = createmat(n)
@@ -34,18 +35,17 @@ if 1 < n <= 5:
     printmat(B, "Matrix B")
     printmat(C, "Matrix C")
 
-
-    mul_result = []
-    for i in range(n):
-        mul_result.append([0] * n)
+    mul_result = [[0] * n for _ in range(n)]
 
     for i in range(n):
         for j in range(n):
+            total = 0
             for k in range(n):
-                mul_result[i][j] += A[i][k] * B[k][j]
-
+                total += A[i][k] * B[k][j]
+            mul_result[i][j] = total
 
     finalresult = []
+
     for i in range(n):
         row = []
         for j in range(n):
