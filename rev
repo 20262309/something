@@ -1,0 +1,23 @@
+import random
+N = int(input())
+def num(p):
+    hap = []
+    for i in range(p):
+        h = []
+        for j in range(p):
+            h.append(random.randint(1, p*p*10 - 1))
+        hap.append(h)
+    return hap
+def show(square):
+    for i in square:
+        for j in i:
+            print(f"{j:5}", end='')
+        print()
+A = num(N)
+res = []
+for i in range(N):
+    h = []
+    for j in range(N):
+        h.append(A[j][i])
+    res.append(h)
+show(res)
